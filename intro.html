@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Built with Claude — Three Live Modules</title>
+<!--
+  =================================================================
+  INTRO / SHOWCASE PAGE
+  Standalone landing page introducing three Thumbtack Enablement
+  modules built with Claude + GitHub Pages + Sana.
+
+  HOST ANYWHERE:
+  - Drop into an existing repo as 'intro.html' and link to it
+  - OR rename to 'index.html' in 'onboarding-interactives' repo
+    so https://kjarosch.github.io/onboarding-interactives/ loads it
+
+  TO CUSTOMIZE:
+  - Module URLs    -> see <a href> tags in the cards below
+  - Brand colors   -> see :root CSS variables
+  - Module copy    -> edit each <article> directly
+  =================================================================
+-->
+<style>
+  :root {
+    --brand: #006D5B;
+    --brand-light: #E6F5F1;
+    --brand-dark: #004D3F;
+    --accent: #F2C94C;
+
+    --text: #111827;
+    --muted: #6B7280;
+    --bg: #FAFAF7;
+    --card: #FFFFFF;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.16);
+
+    --radius: 14px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 24px 40px;
+  }
+
+  .header { text-align: center; margin-bottom: 40px; }
+  .eyebrow {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--brand-light);
+    color: var(--brand-dark);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    letter-spacing: -0.5px;
+  }
+  .lede {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
+    box-shadow: 0 6px 24px rgba(0, 109, 91, 0.08);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .card-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--brand-light);
+    color: var(--brand-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+  }
+  .card-arrow {
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.15s, color 0.15s;
+  }
+  .card:hover .card-arrow {
+    color: var(--brand);
+    transform: translateX(3px);
+  }
+
+  .card p {
+    font-size: 15px;
+    color: var(--text);
+    margin: 0 0 16px;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .tag-audience { color: var(--brand-dark); background: var(--brand-light); border-color: var(--brand-light); }
+
+  .footer {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+  }
+  .footer h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  .footer p {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0 0 12px;
+  }
+  .footer p:last-child { margin-bottom: 0; }
+  .footer strong { font-weight: 600; }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .stack-pill {
+    font-size: 12px;
+    padding: 6px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 16px; }
+    h1 { font-size: 28px; }
+    .lede { font-size: 16px; }
+    .card { padding: 20px; }
+    .card h2 { font-size: 18px; }
+    .footer { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="header">
+    <div class="eyebrow">Pilot · Thumbtack Enablement</div>
+    <h1>Three live modules built with Claude</h1>
+    <p class="lede">A pilot test of what an Enablement designer can ship using Claude and GitHub Pages. All three modules below were built in <strong>under an hour total</strong>, by a <strong>first-time GitHub user</strong>, embedded directly in Sana. They're proofs of capability — content hasn't been validated yet and shouldn't ship to learners as-is.</p>
+  </header>
+
+  <div class="cards">
+
+    <a class="card" href="https://kjarosch.github.io/Week-Onboarding-Timeline/" target="_blank" rel="noopener">
+      <div class="card-head">
+        <div class="card-num">1</div>
+        <h2>3-Week Onboarding Timeline</h2>
+        <span class="card-arrow">→</span>
+      </div>
+      <p>Click each week (Experience, LoB, Training Bay) to expand milestones, what's expected, and where to get support. Replaces a static slide explaining the onboarding journey with something new hires can actually explore.</p>
+      <div class="tags">
+        <span class="tag tag-audience">New hires · Day 1-3</span>
+        <span class="tag">2 minutes</span>
+        <span class="tag">Welcome Circle</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://kjarosch.github.io/marketplace-match-game/" target="_blank" rel="noopener">
+      <div class="card-head">
+        <div class="card-num">2</div>
+        <h2>Marketplace Match</h2>
+        <span class="card-arrow">→</span>
+      </div>
+      <p>A new-hire game where you play account manager and pick the best pro for each customer. Four scenarios, scored feedback, and a final "matchmaker style" insight — teaches the customer-pro fit mental model in five minutes, including why "highest rating" isn't always the right answer.</p>
+      <div class="tags">
+        <span class="tag tag-audience">All new hires</span>
+        <span class="tag">5 minutes</span>
+        <span class="tag">Marketplace mental model</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://kjarosch.github.io/refund-decision-tree/" target="_blank" rel="noopener">
+      <div class="card-head">
+        <div class="card-num">3</div>
+        <h2>Refund Ops Decision Tree</h2>
+        <span class="card-arrow">→</span>
+      </div>
+      <p>An approve/deny tool for the Refund Ops team. Pre-flight checks first, then branches by reason — ending in specific Salesforce codes (in-policy / PBI / deny) with copyable email templates. Built directly from the Lead Refunds (Pro) KA.</p>
+      <div class="tags">
+        <span class="tag tag-audience">Refund Ops</span>
+        <span class="tag">Live IPR review</span>
+        <span class="tag">Job aid</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <h3>How these were built</h3>
+    <p>Each module is a single self-contained HTML file. The loop runs in minutes: <strong>conversation with Claude → working file → GitHub Pages → Sana embed</strong>. Total build time across all three modules: <strong>under an hour</strong>. Total prior GitHub experience: <strong>zero</strong>.</p>
+    <p>This isn't a Figma replacement — Figma still owns visual polish, design systems, and stakeholder review. What this stack does is let Enablement ship working interactive experiences — clickable, scoring, branching, content-aware — at the speed of an idea. The implication: the gap between "I wish we had a module for this" and "it's live in Sana" becomes minutes, not weeks.</p>
+    <p><strong>What this is, and what it isn't.</strong> This was a pilot. The modules demonstrate what's possible, but they're not ready for learners — scenario content for the game needs marketplace-team validation, the refund tree needs KA accuracy review, and copy throughout needs brand and proof-reading passes. Treat these as a working capability demo, not finished curriculum. The "could-we-build-this" question is now answered yes; the next step is content rigor and scaling the pattern.</p>
+    <div class="stack">
+      <span class="stack-pill">Claude</span>
+      <span class="stack-pill">GitHub Pages</span>
+      <span class="stack-pill">Sana embed</span>
+      <span class="stack-pill">Single .html files</span>
+      <span class="stack-pill">&lt; 1 hour total</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
